@@ -1,0 +1,43 @@
+# This is a simple selection sort program.
+# Running it requires the following library commands:
+# size()
+# print()
+
+fn sort(list)
+	# these are not needed, but included for clarity
+	# all variables are local to the functions scope
+	index = 0
+	list = []
+	while index < size(list)
+		search = index + 1
+		smallest = index
+		while search < size(list)
+			if list[search] < list[smallest]
+				smallest = search
+			end
+			search = search + 1
+		next
+		search = list[index]
+		list[index] = list[smallest]
+		list[smallest] = search
+		index = index + 1
+	next
+	return list
+end
+
+fn main()
+	# this is an array
+	data = [ 4 9 5 8 2 7 6 3 1 ]
+	data = sort(data)
+	index = 0
+	first = 1
+	while index < size(data)
+		if first <> 1
+			print(',')
+		end
+		print(data[index])
+		index = index + 1
+		first = 0
+	next
+	print('\r\n')
+end

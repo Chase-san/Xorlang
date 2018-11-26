@@ -1,0 +1,35 @@
+# This is a nearest item in list program.
+# This sample demonstrates the multi value return
+# Running it requires the following library commands:
+# size()
+# print()
+
+fn dist(a b)
+	c = a - b
+	return c * c
+end
+
+fn nearest(target list)
+	best = 0
+	index = 0
+	while index < size(list)
+		if dist(target list[index]) < dist(target list[best])
+			best = index
+		end
+	next
+	#returning multiple values
+	return dist(target list[best]) list[best]
+end
+
+fn main()
+	target = 5
+	list = [22 3 5.1 1 8]
+	distance best = nearest(target list)
+	print('The nearest point to ')
+	print(target)
+	print(' is ')
+	print(best)
+	print(' with a distance of ')
+	print(dist)
+	print('.')
+end

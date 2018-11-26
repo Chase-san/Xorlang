@@ -1,0 +1,102 @@
+# This is a simple script designed to show access to structures.
+# This is more for an internal testing then to demonstrate the language
+# Running it requires the following library commands:
+# print()
+
+fn test(data a b)
+
+	# Test 1: assignment
+	tmp = a
+	
+	if tmp <> a
+		return 1
+	end
+	
+	# Test 2: expression assignment
+	tmp = tmp2 = b
+	
+	if tmp <> b or tmp2 <> b
+		return 2
+	end
+	
+	# Test 3: expression assignment 2
+	tmp = (tmp2 = a)
+	
+	if tmp <> a or tmp2 <> a
+		return 3
+	end
+	
+	# Test 4: multi assignment
+	tmp tmp2 = a b
+	
+	if tmp <> a or tmp2 <> b
+		return 4
+	end
+	
+	# Test 5: array, single index
+	data[a] = tmp
+	
+	if list[a] <> a
+		return 5
+	end
+	
+	# Test 6: array, multi index
+	data[a b] = tmp2
+	
+	if data[a b] <> b
+		return 6
+	end
+	
+	# Test 7: jagged array, single index
+	data[b][a] = tmp
+	
+	if data[b][a] <> a
+		return 7
+	end
+	
+	# Test 8: jagged array, single and multi index
+	data[b a][b] = tmp2
+	
+	if list[b a][b] <> b
+		return 8
+	end
+	
+	# Test 9: jagged array, multi index
+	data[b a][b a] = tmp
+	
+	if list[b a][b a] <> a
+		return 9
+	end
+	
+	# Test 10: array, single index from expression
+	data[a + b] = tmp + tmp2
+	
+	if data[a + b] <> a + b
+		return 10
+	end
+	
+	# Test 11: array initialization and compare
+	data[b a][a + b] = [tmp tmp2]
+	
+	if list[b a][a + b] <> [a b]
+		return 11
+	end
+	
+	return 0
+end
+
+fn main()
+	# do not change these
+	a = 5
+	b = 10
+	data = []
+	result = test(data a b)
+	if result == 0
+		print('test success')
+	else
+		print('test ')
+		print(result)
+		print(' failed')
+	end
+	print('\r\n')
+end
