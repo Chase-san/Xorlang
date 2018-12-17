@@ -29,7 +29,7 @@ fn main()
 		sizeok = 0
 	end
 	
-	testa = [1,2,3]
+	testa = [1 2 3]
 	testb = 'foobar'
 	testc = 5
 	testd = ['foo':'bar']
