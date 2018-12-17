@@ -1,0 +1,69 @@
+# This is a simple merge sort program.
+# Running it requires the following library functions:
+# print()
+# It also requires the following builtin functions:
+# size()
+
+fn swap(a b)
+	return b a
+end
+
+fn sort(list)
+	if size(list) == 2
+		if list[0] < list[1]
+			return list
+		end
+		return [ list[1] list[0] ]
+	elseif size(list) > 2
+		# split the list
+		right = []
+		left = []
+		while index < size(list)
+			if index < size(list) / 2
+				left[] = list[index]
+			else
+				right[] = list[index]
+			end
+			index = index + 1
+		next
+		#sort split lists
+		left = sort(left)
+		right = sort(right)
+		
+		#merge returned lists
+		list = []
+		while li < size(left) or ri < size(right)
+			if li == size(left)
+				list[] = right[ri]
+				ri = ri + 1
+			elseif ri == size(right)
+				list[] = left[li]
+				li = li + 1
+			elseif left[li] < right[ri]
+				list[] = left[li]
+				li = li + 1
+			else
+				list[] = right[ri]
+				ri = ri + 1
+			end
+		next
+	end
+	return list
+end
+
+fn main()
+	# this is an array
+	data = [ 4 9 5 8 2 7 6 3 1 ]
+	data = sort(data)
+	index = 0
+	first = 1
+	while index < size(data)
+		if first <> 1
+			print(',')
+		end
+		print(data[index])
+		index = index + 1
+		first = 0
+	next
+	print('\r\n')
+end

@@ -9,22 +9,15 @@ fn swap(a b)
 end
 
 fn sort(list)
-	# these are not needed, but included for clarity
-	# all variables are local to the functions scope
-	index = 0
-	list = []
-	while index < size(list)
-		search = index + 1
-		smallest = index
-		while search < size(list)
-			if list[search] < list[smallest]
-				smallest = search
+	while i < size(list)
+		while j < size(list)
+			if list[j] < list[j - 1]
+				list[j - 1] list[j] =
+					swap(list[j] list[j - 1])
+			else
+				last
 			end
-			search = search + 1
 		next
-		list[index] list[smallest]
-			= swap(list[smallest] list[index])
-		index = index + 1
 	next
 	return list
 end

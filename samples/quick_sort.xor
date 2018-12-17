@@ -1,0 +1,56 @@
+# This is a simple quick sort program.
+# Running it requires the following library functions:
+# print()
+# It also requires the following builtin functions:
+# size()
+
+fn swap(a b)
+	return b a
+end
+
+fn sort(list index length)
+	pivot = index + length - 1
+	left = index
+	right = pivot - 1
+	
+	if length <= 1 return end
+	
+	while left < right
+		while list[left] < list[right] and left < size(list)
+			left = left + 1
+		next
+		while list[right] >= list[pivot] and left < right
+			right = right - 1
+		next
+		if left > right
+			sort(in index left - index)
+		else
+			if left == right
+				list[left] list[pivot] = swap(list[pivot] list[left])
+				sort(list index left - index)
+				sort(list left + 1 pivot - left)
+			else
+				list[left] list[right] = swap(list[right] list[left])
+			end
+		end
+	next
+	
+	return list
+end
+
+fn main()
+	# this is an array
+	data = [ 4 9 5 8 2 7 6 3 1 ]
+	data = sort(data)
+	index = 0
+	first = 1
+	while index < size(data)
+		if first <> 1
+			print(',')
+		end
+		print(data[index])
+		index = index + 1
+		first = 0
+	next
+	print('\r\n')
+end

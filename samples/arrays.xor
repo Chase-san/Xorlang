@@ -1,7 +1,9 @@
 # This is a simple script designed to show access to structures.
 # This is more for an internal testing then to demonstrate the language
-# Running it requires the following library commands:
+# Running it requires the following library functions:
 # print()
+# It also requires the following builtin functions:
+# size()
 
 fn test(data a b)
 
@@ -33,53 +35,32 @@ fn test(data a b)
 		return 4
 	end
 	
-	# Test 5: array, single index
+	# Test 5: array
 	data[a] = tmp
 	
 	if list[a] <> a
 		return 5
 	end
 	
-	# Test 6: array, multi index
-	data[a b] = tmp2
-	
-	if data[a b] <> b
-		return 6
-	end
-	
-	# Test 7: jagged array, single index
+	# Test 6: jagged array
 	data[b][a] = tmp
 	
 	if data[b][a] <> a
-		return 7
+		return 6
 	end
 	
-	# Test 8: jagged array, single and multi index
-	data[b a][b] = tmp2
-	
-	if list[b a][b] <> b
-		return 8
-	end
-	
-	# Test 9: jagged array, multi index
-	data[b a][b a] = tmp
-	
-	if list[b a][b a] <> a
-		return 9
-	end
-	
-	# Test 10: array, single index from expression
+	# Test 7: array, index from expression
 	data[a + b] = tmp + tmp2
 	
 	if data[a + b] <> a + b
-		return 10
+		return 7
 	end
 	
-	# Test 11: array initialization and compare
-	data[b a][a + b] = [tmp tmp2]
+	# Test 8: array initialization and compare
+	data[b][a + b] = [tmp tmp2]
 	
-	if list[b a][a + b] <> [a b]
-		return 11
+	if list[b][a + b] <> [a b]
+		return 8
 	end
 	
 	return 0

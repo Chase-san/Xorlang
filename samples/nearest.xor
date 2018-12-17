@@ -1,8 +1,9 @@
 # This is a nearest item in list program.
 # This sample demonstrates the multi value return
-# Running it requires the following library commands:
-# size()
+# Running it requires the following library functions:
 # print()
+# It also requires the following builtin functions:
+# size()
 
 fn dist(a b)
 	c = a - b

@@ -1,11 +1,24 @@
+comp_op ::= '==' | '<>' | '<=' | '>=' | '<' | '>'
+add_op ::= '-' | '+' | '|' | '^'
+mul_op ::= '*' | '/' | '%' | '>>' | '<<' | '&'
+unary_op ::= '-' | '!'
+identity ::= [A-Za-z_][A-Za-z0-9_]*
+decimal ::= [0-9]+ '.' [0-9]+
+integer ::= [0-9]+
+string ::= "'" ([^'] | "\'" )* "'"
+block_comment ::= '##' .+? '##'
+line_comment ::= '#' [^\r\n] eol
+eol ::= '\r\n' | '\n' | '\r'
+
 function ::= 'fn' identity '(' identity* ')' statement* 'end'
 statement ::= statement_assign | statement_next | statement_last | statement_return | statement_if | statement_while | statement_call
-statement_if ::= 'if' expression_assign statement* ('else' statement*)? 'end'
-statement_while ::= 'while' expression_assign statement* 'end'
+statement_in_while ::= statement_assign | statement_last | statement_return | statement_if | statement_while | statement_call
+statement_if ::= 'if' expression_assign statement* ('elseif' statement*)* ('else' statement*)? 'end'
+statement_while ::= 'while' expression_assign statement_in_while* 'next'
 statement_call ::= expression_call
 statement_return ::= 'return' expression_assign*
-statement_next ::= 'continue'
-statement_last ::= 'break'
+statement_next ::= 'next'
+statement_last ::= 'last'
 statement_assign ::= (identity array_index*)+ '=' expression_assign+
 expression_assign ::= (identity array_index*)+ '=' expression_assign+ | expression_boolean_or
 expression_boolean_or ::= expression_boolean_and ('or' expression_boolean_and )*
@@ -16,15 +29,5 @@ expression_mul ::= expression_unary (mul_op expression_unary)*
 expression_unary ::= unary_op? expression_value
 expression_value ::= expression_call | identity | decimal | integer | string | array_init | '(' expression_assign ')'
 expression_call ::= identity '(' expression_assign* ')'
-comp_op ::= '==' | '<>' | '<=' | '>=' | '<' | '>'
-add_op ::= '-' | '+' | '|' | '^'
-mul_op ::= '*' | '/' | '%' | '>>' | '<<' | '&'
-unary_op ::= '-' | '!'
-array_init ::= '[' expression_assign* ']'
-array_index ::= '[' expression_assign+ ']'
-identity ::= [A-Za-z_][A-Za-z0-9_]*
-decimal ::= [0-9]+ '.' [0-9]+
-integer ::= [0-9]+
-string ::= "'" ([^'] | "\'" )* "'"
-comment ::= '#' [^\r\n] eol
-eol ::= '\r\n' | '\n' | '\r'
+array_init ::= '[' ((expression_assign ':')? expression_assign)* ']'
+array_index ::= '[' expression_assign ']'
