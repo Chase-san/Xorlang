@@ -6,7 +6,7 @@ identity ::= [A-Za-z_][A-Za-z0-9_]*
 decimal ::= [0-9]+ '.' [0-9]+
 integer ::= [0-9]+
 string ::= "'" ([^'] | "\'" )* "'"
-block_comment ::= '##' .+? '##'
+block_comment ::= '##-' .+? '-##'
 line_comment ::= '#' [^\r\n] eol
 eol ::= '\r\n' | '\n' | '\r'
 

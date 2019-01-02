@@ -8,6 +8,10 @@ fn swap(a b)
 	return b a
 end
 
+fn sort(list)
+	sort(list 0 size(list))
+end
+
 fn sort(list index length)
 	pivot = index + length - 1
 	left = index
