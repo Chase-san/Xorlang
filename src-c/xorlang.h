@@ -1,7 +1,7 @@
 #ifndef __XORLANG__
 #define __XORLANG__
 
-typdef struct string string_t;
+typedef struct string string_t;
 struct string {
 	char *data;
 	size_t length;
@@ -34,5 +34,8 @@ void xor_token_free(token_t *head);
 
 /** tokenize the given string */
 token_t *xor_tokenize(char *str, size_t length);
+
+/** returns a string describing the error, or NULL if no error */
+char *xor_error();
 
 #endif
